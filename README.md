@@ -29,9 +29,9 @@ A full-featured, responsive, interactive Web Frontend and Relational Database Ma
 
 ## 🌟 Key Features
 
-1. **Zero-Python Stack**:
-   - Built entirely with **HTML5, Tailwind CSS, JavaScript (ES6+), and Chart.js**.
-   - Runs directly in **any modern web browser** (Chrome, Edge, Firefox, Safari) by opening `index.html`, OR via a lightweight, zero-dependency Node.js HTTP server.
+1. **Modern Responsive Web Interface & Dashboard**:
+   - Built with **HTML5, Tailwind CSS, JavaScript (ES6+), and Chart.js** for interactive analytics and dynamic catalog management.
+   - Runs directly in **any modern web browser** (Chrome, Edge, Firefox, Safari) by opening `index.html`, or via a lightweight Node.js HTTP server.
 2. **Dual Database Engine (Live PostgreSQL + In-Memory Fallback)**:
    - Connects live to **PostgreSQL 18** on `localhost:5432` for authentic relational database persistence.
    - Includes a standalone in-browser relational execution engine so it can also function offline without any running services.
@@ -71,12 +71,12 @@ library-management-system/
 ├── setup_postgres.bat      # PostgreSQL automated DDL setup script
 ├── schema_and_seed.sql     # Full SQL file for PostgreSQL/MySQL/SQLite
 ├── db_config.example.json  # Safe configuration template
-└── README.md               # Project guide, status checklist, and Viva prep
+└── README.md               # Project guide, status checklist, and query reference
 ```
 
 ---
 
-## 🚀 How to Run the Frontend (Without Python)
+## 🚀 How to Run the Frontend
 
 You have **two simple options** to run this project:
 
@@ -216,17 +216,3 @@ erDiagram
    UNION ALL
    SELECT 'Borrowings', COUNT(*) FROM borrowings;
    ```
-
----
-
-## 🎓 Viva & Exam Questions (DBMS Core Concepts)
-
-1. **Q: Why use `HAVING` instead of `WHERE` for aggregate counts?**
-   - **A:** `WHERE` filters individual rows **before** aggregation and grouping occur. `HAVING` filters the grouped summary rows **after** `GROUP BY` has evaluated aggregate functions (like `COUNT(*)`).
-2. **Q: How does the system handle book stock integrity when issuing books?**
-   - **A:** A database transaction is executed:
-     1. Inserts loan into `Borrowings`.
-     2. Decrements `available_copies` in `Books` by 1.
-     3. Checks `available_copies >= 0`. If copies are 0, the operation is blocked.
-3. **Q: What is the purpose of `information_schema.tables`?**
-   - **A:** `information_schema` is the ANSI-standard set of read-only metadata views providing table catalogs, column data types, constraints, and index details across the database.
